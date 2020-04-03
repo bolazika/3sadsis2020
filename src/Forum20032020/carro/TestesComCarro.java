@@ -37,11 +37,26 @@ class TestesComCarro {
 	
 	@Test
 	void CarroDesligaQuandoAcabaOCombustivel() {
-		Carro corsinha = new Carro(0.250);
+		Carro corsinha = new Carro(2.00);
 		Carro celta = new Carro (0.255);
 		
 		assertTrue(corsinha.isDesligado());
 		assertTrue(celta.isDesligado());
+		
+		corsinha.ligar();
+		
+		corsinha.acelerar();
+		corsinha.acelerar();
+		corsinha.acelerar();
+		corsinha.acelerar();
+		corsinha.acelerar();
+		corsinha.acelerar();
+		assertTrue(corsinha.isLigado());
+		
+		corsinha.acelerar();
+		assertTrue(corsinha.isDesligado());
+		
+		assertEquals(0.00, corsinha.getCombustivelNoTanqueEmLitros());
 		
 		corsinha.ligar();
 		celta.ligar();
@@ -67,6 +82,34 @@ class TestesComCarro {
 		vectra.ligar();
 		
 		assertTrue(vectra.isLigado());
+	}
+	
+	@Test
+	void testerCarroLigado() {
+		Carro carro = new Carro(0.0);
+		
+		
+		carro.ligar();
+		carro.ligar();
+		carro.ligar();
+		carro.ligar();
+		carro.ligar();
+		
+		
+		
+		
+	}
+	
+	@Test
+	void TesteEsvaziarTanque() {
+		Carro corcel2 = new Carro (0.00);
+		
+		corcel2.abastecer(5.00);
+		corcel2.ligar();
+		assertTrue(corcel2.isLigado());
+		assertEquals(4.75, corcel2.getCombustivelNoTanqueEmLitros());
+		corcel2.esvaziarTanque();
+		assertEquals(0.00, corcel2.getCombustivelNoTanqueEmLitros());
 	}
 
 }

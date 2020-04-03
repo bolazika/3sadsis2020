@@ -15,6 +15,9 @@ public class Carro {
 	}
 
 	public void ligar() {
+		if(isLigado()) {
+			throw new RuntimeException("O carro ja esta ligado!!");
+		}
 		if (combustivelNoTanqueEmLitros - CONSUMO > 0.00) {
 			this.ligado = true;
 			combustivelNoTanqueEmLitros -= CONSUMO;
@@ -26,11 +29,12 @@ public class Carro {
 	}
 
 	public void acelerar() {
-		if (combustivelNoTanqueEmLitros - CONSUMO > 0.00) {
+		if (combustivelNoTanqueEmLitros - CONSUMO >= 0.00) {
 			combustivelNoTanqueEmLitros -= CONSUMO;
-		} else {
-			this.desligar();
 		}
+		if (combustivelNoTanqueEmLitros == 0.00)
+			this.desligar();
+		
 	}
 
 	public boolean isLigado() {
@@ -43,6 +47,12 @@ public class Carro {
 
 	public double getCombustivelNoTanqueEmLitros() {
 		return combustivelNoTanqueEmLitros;
+	}
+	// Metodo Modificacao
+	public void esvaziarTanque() {
+		if(combustivelNoTanqueEmLitros > CONSUMO) {
+			combustivelNoTanqueEmLitros = 0.00;
+		}
 	}
 
 
