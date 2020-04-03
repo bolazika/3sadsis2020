@@ -110,6 +110,7 @@ class TestesComCarro {
 		assertEquals(4.75, corcel2.getCombustivelNoTanqueEmLitros());
 		corcel2.esvaziarTanque();
 		assertEquals(0.00, corcel2.getCombustivelNoTanqueEmLitros());
+		corcel2.esvaziarTanque();
 	}
 
 }

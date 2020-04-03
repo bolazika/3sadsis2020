@@ -2,6 +2,7 @@ package Forum20032020.carro;
 
 public class Carro {
 	private final static double CONSUMO = 0.250;
+	private final static double TANQUEVAZIO = 0.00;
 	private double combustivelNoTanqueEmLitros;
 	private boolean ligado;
 
@@ -18,7 +19,7 @@ public class Carro {
 		if(isLigado()) {
 			throw new RuntimeException("O carro ja esta ligado!!");
 		}
-		if (combustivelNoTanqueEmLitros - CONSUMO > 0.00) {
+		if (combustivelNoTanqueEmLitros - CONSUMO > TANQUEVAZIO) {
 			this.ligado = true;
 			combustivelNoTanqueEmLitros -= CONSUMO;
 		}
@@ -29,14 +30,14 @@ public class Carro {
 	}
 
 	public void acelerar() {
-		if (combustivelNoTanqueEmLitros - CONSUMO >= 0.00) {
+		if (combustivelNoTanqueEmLitros - CONSUMO >= TANQUEVAZIO) {
 			combustivelNoTanqueEmLitros -= CONSUMO;
 		}
-		if (combustivelNoTanqueEmLitros == 0.00)
+		if (combustivelNoTanqueEmLitros == TANQUEVAZIO)
 			this.desligar();
 		
 	}
-
+	
 	public boolean isLigado() {
 		return ligado;
 	}
@@ -50,8 +51,11 @@ public class Carro {
 	}
 	// Metodo Modificacao
 	public void esvaziarTanque() {
-		if(combustivelNoTanqueEmLitros > CONSUMO) {
-			combustivelNoTanqueEmLitros = 0.00;
+		if (combustivelNoTanqueEmLitros == 0.00) {
+			throw new RuntimeException("O carro ja esta Sem gazolina!!");
+		}
+		if(combustivelNoTanqueEmLitros > TANQUEVAZIO) {
+			combustivelNoTanqueEmLitros = TANQUEVAZIO;
 		}
 	}
 
