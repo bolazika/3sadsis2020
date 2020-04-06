@@ -18,7 +18,7 @@ public class Pessoa {
 	
 	// Setter
 	public void setNome(String nome) {
-		if (nome == null || nome == "" || nome == " ") {
+		if (nome.length() == 0 || nome.trim().length() <= 1 ){
 			throw new RuntimeException("Nome invalido!");
 		}
 		this.nome = nome;
